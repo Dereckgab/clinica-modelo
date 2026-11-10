@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<style>[hidden]{display:none!important}body{margin:0}</style>
+<title>Clínica Modelo Odontologia</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: grade de 12 colunas implícita, muito espaço em branco, hierarquia só por tamanho e peso; uma cor de marca */
+:root{
+  --bg:#FFFFFF; --alt:#F5F6F7; --ink:#111518; --muted:#5C656D; --line:#E3E6E9;
+  --brand:#0E4C73; --brand-ink:#FFFFFF; --brand-soft:#E8F0F5;
+  --img:#DDE2E6; --img-ink:#6B747C; --ok:#1B6B44;
+  --font:'Figtree', 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --bg:#0F1214; --alt:#161A1D; --ink:#ECEFF1; --muted:#9AA4AC; --line:#262C31;
+  --brand:#6AA9D4; --brand-ink:#0A141B; --brand-soft:#16242E; --img:#20262B; --img-ink:#8A949C; --ok:#6CC596; color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0F1214; --alt:#161A1D; --ink:#ECEFF1; --muted:#9AA4AC; --line:#262C31;
+  --brand:#6AA9D4; --brand-ink:#0A141B; --brand-soft:#16242E; --img:#20262B; --img-ink:#8A949C; --ok:#6CC596; color-scheme:dark }
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--font);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+h1,h2,h3{margin:0;line-height:1.12;letter-spacing:-0.02em;text-wrap:balance;font-weight:700}
+p{margin:0}
+button,input,select{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--brand);outline-offset:3px}
+.wrap{max-width:1120px;margin:0 auto;padding-left:max(20px, env(safe-area-inset-left, 0px));padding-right:max(20px, env(safe-area-inset-right, 0px))}
+.muted{color:var(--muted)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 22px;border-radius:8px;border:1px solid transparent;font-weight:600;font-size:16px;text-decoration:none;cursor:pointer;transition:background .15s, border-color .15s}
+.btn-primary{background:var(--brand);color:var(--brand-ink)}
+.btn-primary:hover{filter:brightness(1.08)}
+.btn-line{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn-line:hover{border-color:var(--ink)}
+.img{background:var(--img);color:var(--img-ink);border-radius:6px;display:flex;align-items:flex-end;padding:14px;font-size:13px}
+
+/* Header */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:21;background:var(--bg)}
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--bg);border-bottom:1px solid var(--line)}
+header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:24px;min-height:72px}
+.brand{font-weight:700;font-size:19px;letter-spacing:-0.01em;color:var(--ink);text-decoration:none}
+nav{display:flex;align-items:center;gap:32px}
+nav a.l{color:var(--muted);text-decoration:none;font-size:15px;font-weight:500}
+nav a.l:hover{color:var(--ink)}
+
+/* Hero */
+.hero .wrap{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:64px;align-items:start;padding-block:88px 96px}
+.hero h1{font-size:clamp(2.4rem,5vw,3.9rem)}
+.hero .lede{font-size:20px;color:var(--muted);margin-top:22px;max-width:34rem}
+.hero .ctas{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.facts{display:flex;flex-wrap:wrap;gap:12px 36px;margin-top:48px;padding-top:28px;border-top:1px solid var(--line)}
+.facts div{display:grid;gap:2px}
+.facts b{font-size:15px}
+.facts span{font-size:14px;color:var(--muted)}
+
+/* Formulário */
+.form{border:1px solid var(--line);border-radius:10px;padding:32px;display:grid;gap:18px;background:var(--bg)}
+.form h2{font-size:22px;letter-spacing:-0.01em}
+.f{display:grid;gap:6px}
+.f label{font-size:14px;font-weight:600}
+.f input,.f select{min-height:48px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:0 14px}
+.f input:focus,.f select:focus{border-color:var(--brand);outline:none;box-shadow:0 0 0 3px var(--brand-soft)}
+.err{font-size:14px;color:#B4441C}
+.legal{font-size:13px;color:var(--muted)}
+
+/* Seções */
+.sec .wrap{padding-block:104px}
+.sec.alt{background:var(--alt)}
+.sec-head{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:64px;margin-bottom:56px;align-items:end}
+.sec-head h2{font-size:clamp(1.9rem,3.6vw,2.7rem)}
+.sec-head p{font-size:18px;color:var(--muted);max-width:36rem}
+
+/* Tratamentos: lista com divisórias */
+.list{border-top:1px solid var(--line)}
+.item{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,6fr) auto;gap:32px;align-items:center;padding-block:26px;border-bottom:1px solid var(--line)}
+.item h3{font-size:21px;letter-spacing:-0.01em}
+.item p{color:var(--muted)}
+.link{background:none;border:0;padding:10px 0;color:var(--brand);font-weight:600;cursor:pointer;white-space:nowrap;font-size:15px}
+.link:hover{text-decoration:underline}
+
+/* Dentista */
+.doc{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:center}
+.doc .img{aspect-ratio:4/5}
+.doc h2{font-size:clamp(1.9rem,3.6vw,2.7rem)}
+.doc .meta{font-size:15px;color:var(--muted);margin-top:10px}
+.doc .bio{font-size:18px;color:var(--muted);margin-top:24px;max-width:36rem}
+
+/* Galeria */
+.gallery{display:grid;grid-template-columns:2fr 1fr 1fr;grid-template-rows:220px 220px;gap:12px}
+.gallery .a{grid-row:span 2}
+
+/* Assistente (seção) */
+.ai{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px;align-items:center}
+.ai h2{font-size:clamp(1.9rem,3.6vw,2.7rem)}
+.ai .points{margin-top:28px;display:grid;gap:0;border-top:1px solid var(--line)}
+.ai .points div{padding-block:16px;border-bottom:1px solid var(--line);display:grid;gap:2px}
+.ai .points b{font-size:16px}
+.ai .points span{color:var(--muted);font-size:15px}
+.preview{border:1px solid var(--line);border-radius:10px;background:var(--bg);overflow:hidden}
+.preview .bar{padding:14px 18px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center;font-size:14px}
+.preview .bar b{font-size:15px}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--ok);margin-right:6px}
+.preview .body{padding:20px 18px;display:grid;gap:10px}
+.preview .q{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 18px}
+.qbtn{border:1px solid var(--line);background:var(--bg);border-radius:8px;padding:10px 14px;cursor:pointer;font-size:14px;min-height:44px}
+.qbtn:hover{border-color:var(--ink)}
+
+/* Contato */
+.contact{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:72px}
+.contact dl{margin:0;display:grid;gap:0;border-top:1px solid var(--line)}
+.contact dl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:16px;padding-block:18px;border-bottom:1px solid var(--line)}
+.contact dt{font-weight:600}
+.contact dd{margin:0;color:var(--muted)}
+.contact .img{min-height:340px}
+
+footer{border-top:1px solid var(--line)}
+footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px 40px;padding-block:32px;font-size:14px;color:var(--muted)}
+
+/* Chat */
+.m{max-width:85%;padding:10px 14px;border-radius:10px;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;line-height:1.5}
+.m.bot{align-self:flex-start;background:var(--alt)}
+.m.me{align-self:flex-end;background:var(--brand);color:var(--brand-ink)}
+.fab{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(20px + env(safe-area-inset-bottom,0px));z-index:40;display:flex;align-items:center;gap:10px;background:var(--ink);color:var(--bg);border:0;border-radius:999px;padding:0 20px;min-height:52px;font-weight:600;cursor:pointer;box-shadow:0 8px 24px rgba(0,0,0,.18)}
+.panel{position:fixed;right:calc(20px + env(safe-area-inset-right,0px));bottom:calc(84px + env(safe-area-inset-bottom,0px));z-index:41;width:min(380px, calc(100vw - 40px));height:min(540px, calc(100vh - 120px));background:var(--bg);border:1px solid var(--line);border-radius:12px;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.18)}
+.panel header{padding:14px 12px 14px 18px;border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between}
+.panel header b{display:block;font-size:15px}
+.panel header span{font-size:13px;color:var(--muted)}
+.x{background:none;border:0;width:44px;height:44px;border-radius:8px;cursor:pointer;display:grid;place-items:center;color:var(--muted)}
+.msgs{flex:1;min-height:0;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px}
+.quick .qbtn{min-height:36px;padding:6px 12px;font-size:13px}
+form.send{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
+form.send input{flex:1;min-width:0;min-height:44px;border:1px solid var(--line);border-radius:8px;background:var(--bg);padding:0 12px}
+form.send button{min-width:44px;height:44px;border:0;border-radius:8px;background:var(--brand);color:var(--brand-ink);cursor:pointer;display:grid;place-items:center}
+
+@media (max-width:860px){
+  .hero .wrap,.sec-head,.doc,.ai,.contact{grid-template-columns:minmax(0,1fr);gap:36px}
+  .hero .wrap{padding-block:56px 64px}
+  .sec .wrap{padding-block:72px}
+  .item{grid-template-columns:minmax(0,1fr);gap:6px}
+  .gallery{grid-template-columns:1fr 1fr;grid-template-rows:180px 140px}
+  .gallery .a{grid-row:auto;grid-column:span 2}
+  nav a.l{display:none}
+  .contact dl div{grid-template-columns:minmax(0,1fr);gap:2px}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+
+</head>
+<body>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="#inicio" id="brandName">Clínica Modelo Odontologia</a>
+    <nav aria-label="Principal">
+      <a class="l" href="#tratamentos">Tratamentos</a>
+      <a class="l" href="#dentista">Dentista</a>
+      <a class="l" href="#contato">Contato</a>
+      <a class="btn btn-primary" href="#agendar">Agendar</a>
+    </nav>
+  </div>
+</header>
+
+<main id="inicio">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Odontologia completa, com atendimento sem pressa.</h1>
+        <p class="lede">Implantes, ortodontia e estética dental em <span data-k="cidade"></span>. Agende uma avaliação e conheça seu dentista.</p>
+        <div class="ctas">
+          <a class="btn btn-primary" href="#agendar">Agendar avaliação</a>
+          <a class="btn btn-line" href="#dentista">Conhecer o dentista</a>
+        </div>
+        <div class="facts">
+          <div><b>Horário</b><span data-k="horarioCurto"></span></div>
+          <div><b>Endereço</b><span data-k="bairro"></span></div>
+          <div><b>Convênios</b><span>Aceitos e particular</span></div>
+        </div>
+      </div>
+
+      <div class="form" id="agendar">
+        <form id="lf" style="display:grid;gap:18px" novalidate>
+          <div style="display:grid;gap:6px">
+            <h2>Agende sua avaliação</h2>
+            <p class="muted" style="font-size:15px">Retornamos pelo WhatsApp no mesmo dia útil.</p>
+          </div>
+          <div class="f"><label for="ln">Nome</label><input id="ln" autocomplete="name" required></div>
+          <div class="f"><label for="lw">WhatsApp</label><input id="lw" inputmode="tel" autocomplete="tel" placeholder="(44) 90000-0000" required></div>
+          <div class="f"><label for="lt">Tratamento</label>
+            <select id="lt"><option>Avaliação geral</option><option>Implantes</option><option>Alinhador transparente</option><option>Lentes de contato dental</option><option>Clareamento</option><option>Aparelho</option><option>Prótese</option><option>Harmonização orofacial</option></select></div>
+          <p class="err" id="lerr" hidden>Informe seu nome e WhatsApp.</p>
+          <button class="btn btn-primary" type="submit">Solicitar contato</button>
+          <p class="legal">Seus dados são usados apenas para o agendamento.</p>
+        </form>
+        <div id="leadDone" hidden style="display:grid;gap:8px;padding:12px 0">
+          <h2 style="font-size:22px">Solicitação enviada</h2>
+          <p class="muted">A recepção vai chamar você no WhatsApp para confirmar o horário.</p>
+          <p class="legal">Modelo de demonstração: nenhum dado foi enviado.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="tratamentos">
+    <div class="wrap">
+      <div class="sec-head">
+        <h2>Tratamentos</h2>
+        <p>Cada tratamento começa com uma avaliação, em que o dentista explica as opções, o prazo e o valor.</p>
+      </div>
+      <div class="list" id="treatList"></div>
+    </div>
+  </section>
+
+  <section class="sec" id="dentista">
+    <div class="wrap doc">
+      <div class="img">Foto do dentista</div>
+      <div>
+        <h2>Dra. Camila Rocha</h2>
+        <p class="meta">Implantodontia e estética dental · CRO-PR 00000</p>
+        <p class="bio">Formada há mais de dez anos, com especialização em implantes e reabilitação oral. Cada plano de tratamento é explicado com calma, com prazos e valores combinados antes de começar.</p>
+        <div style="margin-top:32px"><a class="btn btn-primary" href="#agendar">Agendar com a Dra. Camila</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt">
+    <div class="wrap">
+      <div class="sec-head"><h2>A clínica</h2><p>Consultórios equipados e uma recepção pensada para o seu conforto.</p></div>
+      <div class="gallery">
+        <div class="img a">Recepção</div><div class="img">Consultório</div><div class="img">Equipamentos</div><div class="img">Fachada</div><div class="img">Sala de espera</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec">
+    <div class="wrap ai">
+      <div>
+        <h2>Dúvidas? Pergunte a qualquer hora.</h2>
+        <p class="muted" style="font-size:18px;margin-top:18px">A assistente virtual responde na hora, inclusive à noite e no fim de semana.</p>
+        <div class="points">
+          <div><b>Informa</b><span>Tratamentos, horários, endereço e convênios</span></div>
+          <div><b>Agenda</b><span>Anota o pedido e a recepção confirma o horário</span></div>
+          <div><b>Orienta</b><span>Em caso de dor, indica o telefone da clínica</span></div>
+        </div>
+      </div>
+      <div class="preview">
+        <div class="bar"><b>Assistente virtual</b><span class="muted"><span class="dot"></span>Online</span></div>
+        <div class="body">
+          <div class="m bot">Olá! Posso explicar um tratamento, informar horários ou anotar seu pedido de avaliação.</div>
+        </div>
+        <div class="q">
+          <button class="qbtn" type="button" data-ask="Quanto custa um implante?">Quanto custa um implante?</button>
+          <button class="qbtn" type="button" data-ask="Vocês atendem convênio?">Atendem convênio?</button>
+          <button class="qbtn" type="button" data-ask="Quero agendar uma avaliação">Quero agendar</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="sec alt" id="contato">
+    <div class="wrap contact">
+      <div style="display:grid;gap:28px;align-content:start">
+        <h2 style="font-size:clamp(1.9rem,3.6vw,2.7rem)">Contato</h2>
+        <dl>
+          <div><dt>Endereço</dt><dd data-k="endereco"></dd></div>
+          <div><dt>Horário</dt><dd data-k="horario"></dd></div>
+          <div><dt>WhatsApp</dt><dd data-k="telefone"></dd></div>
+        </dl>
+        <div><a class="btn btn-primary" href="#agendar">Agendar avaliação</a></div>
+      </div>
+      <div class="img">Mapa</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><span data-k="nome"></span> · Responsável técnico: Dra. Camila Rocha, CRO-PR 00000</span>
+    <span>Site de demonstração · dados fictícios · por Dereck Gabriel</span>
+  </div>
+</footer>
+
+<button class="fab" id="fab" type="button" aria-expanded="false" aria-controls="panel">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1-4.6A8 8 0 1 1 21 12z"/></svg>Fale conosco
+</button>
+
+<div class="panel" id="panel" role="dialog" aria-label="Assistente virtual" hidden>
+  <header>
+    <div><b>Assistente virtual</b><span id="mode"></span></div>
+    <button class="x" id="close" type="button" aria-label="Fechar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button>
+  </header>
+  <div class="msgs" id="msgs" aria-live="polite"></div>
+  <div class="quick">
+    <button class="qbtn" type="button" data-ask="Qual o horário de atendimento?">Horário</button>
+    <button class="qbtn" type="button" data-ask="Onde fica a clínica?">Endereço</button>
+    <button class="qbtn" type="button" data-ask="Quero agendar uma avaliação">Agendar</button>
+  </div>
+  <form class="send" id="send">
+    <label for="q" hidden>Mensagem</label>
+    <input id="q" placeholder="Digite sua dúvida" autocomplete="off">
+    <button type="submit" aria-label="Enviar"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </form>
+</div>
+
+<script>
+// ====== Dados da clínica: altere aqui para cada cliente ======
+const CLINIC = {
+  nome: "Clínica Modelo Odontologia",
+  cidade: "Cianorte",
+  bairro: "Centro, Cianorte – PR",
+  endereco: "Rua Exemplo, 123 — Centro, Cianorte – PR",
+  horario: "Segunda a sexta, 8h às 18h. Sábado, 8h às 12h.",
+  horarioCurto: "Seg a sex 8h–18h · Sáb 8h–12h",
+  telefone: "(44) 90000-0000",
+  convenios: "os principais convênios odontológicos e particular",
+  tratamentos: [
+    { nome: "Implantes dentários", resumo: "Reposição fixa de dentes perdidos, com planejamento individual." },
+    { nome: "Alinhador transparente", resumo: "Placas quase invisíveis que corrigem a posição dos dentes aos poucos." },
+    { nome: "Lentes de contato dental", resumo: "Lâminas finas que ajustam cor, forma e tamanho dos dentes." },
+    { nome: "Clareamento dental", resumo: "Dentes mais claros, com acompanhamento do dentista." },
+    { nome: "Aparelho ortodôntico", resumo: "Correção da posição dos dentes e da mordida." },
+    { nome: "Prótese dentária", resumo: "Próteses fixas ou removíveis para mastigar e sorrir com segurança." },
+    { nome: "Harmonização orofacial", resumo: "Procedimentos para equilibrar a estética do rosto." }
+  ]
+};
+// =============================================================
+
+const $ = (s) => document.querySelector(s);
+document.querySelectorAll("[data-k]").forEach(el => { el.textContent = CLINIC[el.dataset.k] || ""; });
+$("#brandName").textContent = CLINIC.nome;
+
+const list = $("#treatList");
+CLINIC.tratamentos.forEach((t) => {
+  const row = document.createElement("div"); row.className = "item";
+  const h = document.createElement("h3"); h.textContent = t.nome;
+  const p = document.createElement("p"); p.textContent = t.resumo;
+  const b = document.createElement("button"); b.className = "link"; b.type = "button";
+  b.dataset.ask = "Como funciona " + t.nome.toLowerCase() + "?"; b.textContent = "Tirar dúvida";
+  row.append(h, p, b); list.append(row);
+});
+
+$("#lf").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const ok = $("#ln").value.trim() && $("#lw").value.trim();
+  $("#lerr").hidden = !!ok;
+  if (!ok) return;
+  $("#lf").hidden = true; $("#leadDone").hidden = false;
+});
+
+// ====== Assistente ======
+const panel = $("#panel"), fab = $("#fab"), msgs = $("#msgs"), input = $("#q");
+let turns = [], sampleFn = null, aiOff = false, busy = false, booking = null;
+
+function add(kind, text) {
+  const d = document.createElement("div"); d.className = "m " + kind; d.textContent = text;
+  msgs.append(d); msgs.scrollTop = msgs.scrollHeight; return d;
+}
+function openPanel() {
+  panel.hidden = false; fab.setAttribute("aria-expanded", "true");
+  if (!msgs.children.length) add("bot", "Olá! Sou a assistente virtual da " + CLINIC.nome + ". Como posso ajudar?");
+  input.focus();
+}
+function closePanel() { panel.hidden = true; fab.setAttribute("aria-expanded", "false"); fab.focus(); }
+fab.addEventListener("click", () => panel.hidden ? openPanel() : closePanel());
+$("#close").addEventListener("click", closePanel);
+document.addEventListener("click", (e) => { const b = e.target.closest("[data-ask]"); if (b) { openPanel(); ask(b.dataset.ask); } });
+$("#send").addEventListener("submit", (e) => { e.preventDefault(); const v = input.value.trim(); if (v) { input.value = ""; ask(v); } });
+
+const RULES = () => `Você é a assistente virtual da ${CLINIC.nome}, clínica odontológica em ${CLINIC.cidade}, conversando com um paciente pelo site.
+Regras:
+- Responda em português do Brasil, no máximo 3 frases curtas, tom cordial e profissional. Sem markdown, listas ou emojis.
+- Use apenas as informações abaixo. Se não souber algo (como preços), diga que a equipe informa na avaliação.
+- Nunca faça diagnóstico nem indique remédio. Em dor forte ou urgência, oriente ligar para ${CLINIC.telefone}.
+- Se a pessoa quiser agendar, peça o nome e o melhor período (manhã, tarde ou sábado). Com os dois, confirme que o pedido foi anotado e que a recepção vai chamar no WhatsApp para confirmar.
+Endereço: ${CLINIC.endereco}
+Horário: ${CLINIC.horario}
+WhatsApp: ${CLINIC.telefone}
+Convênios: ${CLINIC.convenios}
+Tratamentos: ${CLINIC.tratamentos.map(t => t.nome + " (" + t.resumo + ")").join("; ")}`;
+
+async function ask(text) {
+  if (busy) return; busy = true;
+  add("me", text);
+  const bubble = add("bot", "…");
+  if (sampleFn && !aiOff) {
+    turns.push({ role: "user", content: text });
+    if (turns.length > 16) turns = turns.slice(-16);
+    while (turns.length && turns[0].role !== "user") turns.shift();
+    try {
+      const { text: answer } = await sampleFn([{ role: "user", content: RULES() }, ...turns], {
+        modelTier: "quick", cache: false,
+        onText: ({ text }) => { bubble.textContent = text; msgs.scrollTop = msgs.scrollHeight; }
+      });
+      bubble.textContent = answer; turns.push({ role: "assistant", content: answer });
+    } catch (e) {
+      turns.pop();
+      if (e && e.code === "rate_limited") bubble.textContent = e.text || "Muitas mensagens seguidas. Tente novamente em instantes.";
+      else if (e && e.code === "cancelled") bubble.remove();
+      else { aiOff = true; setMode(); bubble.textContent = scripted(text); }
+    }
+  } else {
+    await new Promise(r => setTimeout(r, 400));
+    bubble.textContent = scripted(text);
+  }
+  busy = false;
+}
+
+function norm(s) { return s.toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, ""); }
+function scripted(raw) {
+  const s = norm(raw);
+  if (booking && /(cancela|deixa pra la|desisto|nao quero)/.test(s)) { booking = null; return "Tudo bem, cancelei o pedido. Se quiser agendar depois, é só chamar."; }
+  if (booking === "nome") {
+    const nome = raw.trim().replace(/^(meu nome (é|e)|me chamo|eu sou|sou (o|a)|sou)\s+/i, "").trim();
+    const saudacao = /^(oi|ola|opa|e ai|bom dia|boa tarde|boa noite|sim|ok|okay|nao|tudo bem)\b/.test(norm(nome));
+    if (saudacao || nome.length < 2 || /\d|\?/.test(nome) || nome.split(/\s+/).length > 5) return "Para anotar o pedido, preciso do seu nome. Como você se chama?";
+    const first = nome.split(/\s+/)[0];
+    booking = { nome: first.charAt(0).toUpperCase() + first.slice(1).toLowerCase() };
+    return "Obrigada, " + booking.nome + ". Qual período é melhor para você: manhã, tarde ou sábado?";
+  }
+  if (booking && booking.nome) {
+    const p = /manha|cedo/.test(s) ? "manhã" : /tarde/.test(s) ? "tarde" : /sabado|fim de semana/.test(s) ? "sábado" : /qualquer|tanto faz|indiferente/.test(s) ? "qualquer período" : null;
+    if (!p) return "Qual período você prefere: manhã, tarde ou sábado?";
+    const n = booking.nome; booking = null;
+    return "Pronto, " + n + ". Seu pedido de avaliação foi anotado para " + (p === "qualquer período" ? "qualquer período" : "o período da " + (p === "sábado" ? "manhã de sábado" : p)) + ". A recepção vai chamar você no WhatsApp para confirmar o horário.";
+  }
+  if (/(dor|doendo|urgen|inchad|sangr|quebrou)/.test(s)) return "Em caso de dor ou urgência, ligue para " + CLINIC.telefone + " e a equipe orienta você. Não consigo avaliar sintomas por aqui.";
+  if (/(agend|marcar|consulta|avaliacao|vaga)/.test(s) && !/(horario de|que horas|abre|funciona)/.test(s)) { booking = "nome"; return "Claro. Para anotar seu pedido, qual é o seu nome?"; }
+  if (/(quanto|preco|valor|custa|pagamento|parcel)/.test(s)) return "O valor depende do seu caso. Na avaliação o dentista explica as opções, o valor e as formas de pagamento. Quer que eu anote um pedido de avaliação?";
+  if (/(conveni|plano)/.test(s)) return "Atendemos " + CLINIC.convenios + ". A recepção confirma a cobertura antes da consulta.";
+  if (/(hora|abre|fecha|funciona|sabado)/.test(s)) return "Nosso horário: " + CLINIC.horario;
+  if (/(onde|endereco|fica|local|chegar)/.test(s)) return "Estamos na " + CLINIC.endereco + ".";
+  if (/(telefone|whats|contato|ligar)/.test(s)) return "Nosso WhatsApp é " + CLINIC.telefone + ".";
+  const t = CLINIC.tratamentos.find(x => norm(x.nome).split(" ").some(w => w.length > 4 && s.includes(w)));
+  if (t) return t.nome + ": " + t.resumo + " Na avaliação o dentista indica o melhor caminho. Quer agendar?";
+  if (/(tratamento|fazem|servico)/.test(s)) return "Fazemos " + CLINIC.tratamentos.map(x => x.nome.toLowerCase()).join(", ") + ". Sobre qual quer saber mais?";
+  return "Posso ajudar com tratamentos, horários, endereço, convênios ou agendamento.";
+}
+function setMode() { $("#mode").textContent = (sampleFn && !aiOff) ? "Respostas com IA" : "Online"; }
+setMode();
+if (window.claude && claude.use) claude.use("sample").then(fn => { if (fn) { sampleFn = fn; setMode(); } }).catch(() => {});
+</script>
+
+</body>
+</html>
